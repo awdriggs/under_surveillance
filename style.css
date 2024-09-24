@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #DDD;
+  margin: 0;
+  padding: 0;
+}
+
+#page-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #FFF;
+
+  padding: 20px;
+
+  h1 {
+    margin: 0;
+    background-color: pink;
+    font-size: 3rem;
+    text-align: center;
+    padding: 20px;
+
+  }
+
+
+  #sketch-wrapper {
+    width: 100%;
+    height: 100vh;
+  }
+
+  section {
+    margin-bottom: 150px;
+  }
+
+  footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    background-color: cornflowerblue;
+    height: 100px;
+    width: 100%;
+
+    .button {
+      display: inline-block;
+
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      background-color: lightgrey;
+      position: relative;
+      top: -50px;
+      border: 1px solid black;
+    }
+  }
+
+  #sketch {
+    marign: 0;
+  }
+
+
+}
