@@ -22,7 +22,7 @@ console.log("working yo");
   createCanvas(container.width, container.height); //keep hd proportions
 
     // Create the video
-    video = createCapture(VIDEO);
+    video = createCapture(VIDEO, {video:{ facingMode:"environment"}});
     video.size(width, height);
     // video.hide();
 
