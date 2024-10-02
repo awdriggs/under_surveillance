@@ -1,0 +1,12 @@
+/* make color vars global */
+
+:root {
+--black: #000000;
+--powder: #fffffc;
+--khaki: #beb7a4;
+--orange: #ff7f11;
+--red: #ff3f00;
+--grey: #DDD;
+}
+
+

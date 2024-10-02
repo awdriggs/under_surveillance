@@ -1,0 +1,10 @@
+#page-container {
+  overflow: hidden;
+  padding:0;
+}
+#camera {
+  display: none;
+}
+canvas {
+  border: 1px solid black;
+}

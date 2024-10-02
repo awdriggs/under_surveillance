@@ -1,25 +1,35 @@
+
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #DDD;
+  background-color: var(--grey);
   margin: 0;
   padding: 0;
+  font-weight: 300;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
+
+h1, h2, h3 {
+    font-family: "Josefin Sans", sans-serif;
+  }
 
 #page-container {
   max-width: 800px;
   margin: 0 auto;
-  background-color: #FFF;
+  background-color: var(--powder);
 
   padding: 20px;
 
   h1 {
     margin: 0;
-    background-color: pink;
+    color: var(--orange);
     font-size: 3rem;
-    text-align: center;
+    /* text-align: center; */
     padding: 20px;
 
   }
@@ -30,7 +40,7 @@ body {
     height: 100vh;
   }
 
-  section {
+  main {
     margin-bottom: 150px;
   }
 
@@ -39,7 +49,7 @@ body {
     bottom: 0;
     left: 0;
     text-align: center;
-    background-color: cornflowerblue;
+    background-color: var(--khaki);
     height: 100px;
     width: 100%;
 
@@ -49,16 +59,26 @@ body {
       width: 100px;
       height: 100px;
       margin: 10px;
-      background-color: lightgrey;
+      background-color: var(--black);
       position: relative;
       top: -50px;
       border: 1px solid black;
+      border-radius: 100%;
+    }
+
+    .button img{
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .btn-sm {
+      width: 70px;
+      height: 70px;
     }
   }
 
   #sketch {
     marign: 0;
   }
-
-
 }

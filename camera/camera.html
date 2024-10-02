@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Under Surveillance - Camera</title><!-- is this needed? -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/inferencejs"></script> -->
+  <!-- Load roboflow.js, the script that will handle loading and running our computer vision model in the browser -->
+
+  <!-- <script src="https://cdn.roboflow.com/0.2.25/roboflow.js"></script> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&amp;family=Roboto&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../variables.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./camera.css">
+</head>
+<body>
+  <div id="page-container">
+    <!-- <h1>Under _ Surveillance</h1> -->
+
+    <!-- <main> -->
+    <!--   <section class="prompt"> -->
+    <!--     <p>Point camera at suspected surveillance species</p> -->
+    <!--   </section> -->
+
+      <!-- <p id="loading">Loading...</p> -->
+      <!-- The canvas below is required -->
+      <section class="infer-widget">
+        <video id="camera" autoplay playsinline></video>
+        <canvas id="video_canvas">
+        </canvas>
+      </section>
+      <!-- <section id="settings"> -->
+      <!--   <label for="confidence">Prediction Confidence %</label><br> -->
+      <!--   <input type="range" min="1" max="100" value="60" class="slider" id="confidence"> -->
+      <!-- </section> -->
+      <!-- Load our application logic -->
+    </main>
+
+    <footer>
+      <a id="home" class="button btn-sm" href="../"><img src="../assets/home.svg" width="50px" alt="map icon"></a>
+      <a id="identify" class="button" href="#"><img src="../assets/capture.svg" width="80px" alt="camera icon"></a>
+      <a id="flip" class="button btn-sm" href="#">
+         <img src="../assets/flip.svg" width="50px" alt="flip icon">
+       </a>
+    </footer>
+  </div>
+  <!-- end of page container -->
+  <script src="./test.js"></script>
+</body>
+</html>
