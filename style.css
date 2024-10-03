@@ -15,8 +15,8 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: "Josefin Sans", sans-serif;
-  }
+  font-family: "Josefin Sans", sans-serif;
+}
 
 #page-container {
   max-width: 800px;
@@ -32,6 +32,22 @@ h1, h2, h3 {
     /* text-align: center; */
     padding: 20px;
 
+    a, a:visited {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a:hover{
+      color: var(--red);
+    }
+  }
+
+  .callout {
+    color: var(--red);
+  }
+
+  img {
+    max-width: 100%;
   }
 
 
