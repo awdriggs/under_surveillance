@@ -148,21 +148,21 @@ function webcamInference() {
 
         // scale down video by 0.75
 // TODO why?
-        // height = height * 0.75;
-        // width = width * 0.75;
+        height = height * 0.75;
+        width = width * 0.75;
 
-        // width = Math.round(width);
-        // height = Math.round(height);
+        width = Math.round(width);
+        height = Math.round(height);
 
-        // video.setAttribute("width", width);
-        // video.setAttribute("height", height);
-        // video.style.width = width + "px";
-        // video.style.height = height + "px";
+        video.setAttribute("width", width);
+        video.setAttribute("height", height);
+        video.style.width = width + "px";
+        video.style.height = height + "px";
 
-        // canvas.style.width = width + "px";
-        // canvas.style.height = height + "px";
-        // canvas.width = width;
-        // canvas.height = height;
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+        canvas.width = width;
+        canvas.height = height;
 
         document.getElementById("video_canvas").style.display = "block";
       };
