@@ -10,10 +10,14 @@
 let fm = 'environment';
 
 let flip = document.querySelector('#flip');
+
 flip.addEventListener("click", () => {
   console.log("flip");
+
   fm = (fm == 'environment') ? 'user' : 'environment';
   console.log(fm);
+  model = null;
+  canvas_painted = false;
   webcamInference();
 });
 //insert the colors you want, key pairs
