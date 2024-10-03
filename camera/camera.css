@@ -9,3 +9,29 @@
 canvas {
   /* border: 1px solid black; */
 }
+
+.infer-widget {
+  position: relative;
+  overflow: hidden;
+}
+
+.banner {
+  /* background-color: var(--red); */
+  /* display: none; */
+  visibility: hidden;
+  background-color: rgba(255, 63, 0, 0.5);
+  position: fixed;
+  bottom: 200px;
+  width: 300px;
+  left: 50%;
+  margin-left:-150px;
+  padding: 10px;
+  text-align: center;
+
+  a, a:visited {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 3.5rem;
+    text-decoration: none;
+    color: var(--powder);
+  }
+}

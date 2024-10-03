@@ -6,9 +6,20 @@
 // On the first prediction, an initialiation step happens in detectFrame()
 // to prepare the canvas on which predictions are displayed.
 
+//globals
+let fm = 'environment';
+
+let flip = document.querySelector('#flip');
+flip.addEventListener("click", () => {
+  console.log("flip");
+  fm = (fm == 'environment') ? 'user' : 'environment';
+  console.log(fm);
+  webcamInference();
+});
+//insert the colors you want, key pairs
 var bounding_box_colors = {};
 
-//bump this up to make it  more exact 
+//bump this up to make it  more exact
 var user_confidence = 0.6;
 
 // Update the colors in this list to set the bounding box colors
@@ -79,6 +90,8 @@ function drawBoundingBoxes(predictions, ctx) {
   // For example, you could display them on the web page, check off items on a list,
   // or store predictions somewhere.
 
+  displayBanner(predictions);
+
   for (var i = 0; i < predictions.length; i++) {
     var confidence = predictions[i].confidence;
 
@@ -125,7 +138,7 @@ function webcamInference() {
   loading.style.display = "block";
 
   navigator.mediaDevices
-    .getUserMedia({ video: { facingMode: "environment" } })
+    .getUserMedia({ video: { facingMode: fm } })
     .then(function(stream) {
       video = document.createElement("video");
       video.srcObject = stream;
@@ -147,7 +160,7 @@ function webcamInference() {
         width = video.videoWidth;
 
         // scale down video by 0.75
-// TODO why?
+        // TODO why?
         // height = height * 0.75;
         // width = width * 0.75;
 
@@ -165,6 +178,7 @@ function webcamInference() {
         canvas.height = height;
 
         document.getElementById("video_canvas").style.display = "block";
+        loading.style.display = "none"; //clear the loading graphic
       };
 
       ctx.scale(1, 1);
@@ -191,6 +205,29 @@ function webcamInference() {
     .catch(function(err) {
       console.log(err);
     });
+}
+
+function displayBanner(predictions){
+
+  let banner = document.querySelector(".banner");
+
+  if(predictions.length > 0 && predictions[0].confidence > user_confidence){
+    let param = predictions[0].class;
+
+    banner.style.visibility = "visible";
+    // document.getElementById("abc").href="xyz.php";
+    let baseUrl = window.location.origin;
+    let anchor = banner.querySelector("a")
+    // anchor.href = baseUrl + `/species/${predictions[0].class}.html`;
+
+    let targetUrl =`${baseUrl}/species/single.html?id=${encodeURIComponent(param)}`;
+    console.log(targetUrl);
+    // Construct the URL with query parameters
+    anchor.href = targetUrl;
+
+  } else {
+    banner.style.visibility = "hidden";
+  }
 }
 
 // function changeConfidence () {
