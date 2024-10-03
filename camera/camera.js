@@ -148,8 +148,8 @@ function webcamInference() {
 
         // scale down video by 0.75
 // TODO why?
-        height = height * 0.75;
-        width = width * 0.75;
+        // height = height * 0.75;
+        // width = width * 0.75;
 
         width = Math.round(width);
         height = Math.round(height);
