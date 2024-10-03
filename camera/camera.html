@@ -6,8 +6,8 @@
   <title>Under Surveillance - Camera</title><!-- is this needed? -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/inferencejs"></script> -->
   <!-- Load roboflow.js, the script that will handle loading and running our computer vision model in the browser -->
+  <script src="https://cdn.roboflow.com/0.2.25/roboflow.js"></script>
 
-  <!-- <script src="https://cdn.roboflow.com/0.2.25/roboflow.js"></script> -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&amp;family=Roboto&amp;display=swap" rel="stylesheet">
@@ -24,10 +24,12 @@
     <!--     <p>Point camera at suspected surveillance species</p> -->
     <!--   </section> -->
 
-      <!-- <p id="loading">Loading...</p> -->
+      <p id="loading">Loading...</p>
+
       <!-- The canvas below is required -->
       <section class="infer-widget">
-        <video id="camera" autoplay playsinline></video>
+        <!-- js loads camera --> 
+        <!-- <video id="camera" autoplay playsinline></video> -->
         <canvas id="video_canvas">
         </canvas>
       </section>
@@ -47,6 +49,7 @@
     </footer>
   </div>
   <!-- end of page container -->
-  <script src="./test.js"></script>
+
+  <script src="./camera.js"></script>
 </body>
 </html>

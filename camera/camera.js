@@ -8,6 +8,7 @@
 
 var bounding_box_colors = {};
 
+//bump this up to make it  more exact 
 var user_confidence = 0.6;
 
 // Update the colors in this list to set the bounding box colors
@@ -32,7 +33,6 @@ var ctx = canvas.getContext("2d");
 
 var model = null;
 
-
 function detectFrame() {
   // On first run, initialize a canvas
   // On all runs, run inference using a video frame
@@ -42,6 +42,7 @@ function detectFrame() {
   model.detect(video).then(function(predictions) {
 
     if (!canvas_painted) {
+      // var video_start = document.getElementById("camera");
       var video_start = document.getElementById("video1");
       canvas.style.width = video_start.width + "px";
       canvas.style.height = video_start.height + "px";
@@ -146,22 +147,22 @@ function webcamInference() {
         width = video.videoWidth;
 
         // scale down video by 0.75
+// TODO why?
+        // height = height * 0.75;
+        // width = width * 0.75;
 
-        height = height * 0.75;
-        width = width * 0.75;
+        // width = Math.round(width);
+        // height = Math.round(height);
 
-        width = Math.round(width);
-        height = Math.round(height);
+        // video.setAttribute("width", width);
+        // video.setAttribute("height", height);
+        // video.style.width = width + "px";
+        // video.style.height = height + "px";
 
-        video.setAttribute("width", width);
-        video.setAttribute("height", height);
-        video.style.width = width + "px";
-        video.style.height = height + "px";
-
-        canvas.style.width = width + "px";
-        canvas.style.height = height + "px";
-        canvas.width = width;
-        canvas.height = height;
+        // canvas.style.width = width + "px";
+        // canvas.style.height = height + "px";
+        // canvas.width = width;
+        // canvas.height = height;
 
         document.getElementById("video_canvas").style.display = "block";
       };
@@ -192,10 +193,10 @@ function webcamInference() {
     });
 }
 
-function changeConfidence () {
-  user_confidence = document.getElementById("confidence").value / 100;
-}
+// function changeConfidence () {
+//   user_confidence = document.getElementById("confidence").value / 100;
+// }
 
-document.getElementById("confidence").addEventListener("input", changeConfidence);
+// document.getElementById("confidence").addEventListener("input", changeConfidence);
 
 webcamInference();
