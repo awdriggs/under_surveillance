@@ -137,13 +137,21 @@ function drawBoundingBoxes(predictions, ctx) {
 }
 
 function webcamInference() {
+  //remove the old video, this is for the camera flip
+  let oldVideo = document.querySelector("#video1");
+
+  if(oldVideo) oldVideo.remove();
+
   // Ask for webcam permissions, then run main application.
   var loading = document.getElementById("loading");
   loading.style.display = "block";
+ 
 
   navigator.mediaDevices
     .getUserMedia({ video: { facingMode: fm } })
     .then(function(stream) {
+
+
       video = document.createElement("video");
       video.srcObject = stream;
       video.id = "video1";
