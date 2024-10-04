@@ -8,18 +8,20 @@
 
 //globals
 let fm = 'environment';
+//this isn't working and freezing the app on the phone
+ 
+// let flip = document.querySelector('#flip');
 
-let flip = document.querySelector('#flip');
+// flip.addEventListener("click", () => {
+//   console.log("flip");
 
-flip.addEventListener("click", () => {
-  console.log("flip");
+//   fm = (fm == 'environment') ? 'user' : 'environment';
+//   console.log(fm);
+//   model = null;
+//   canvas_painted = false;
+//   webcamInference();
+// });
 
-  fm = (fm == 'environment') ? 'user' : 'environment';
-  console.log(fm);
-  model = null;
-  canvas_painted = false;
-  webcamInference();
-});
 //insert the colors you want, key pairs
 var bounding_box_colors = {};
 
@@ -137,10 +139,9 @@ function drawBoundingBoxes(predictions, ctx) {
 }
 
 function webcamInference() {
-  //remove the old video, this is for the camera flip
-  let oldVideo = document.querySelector("#video1");
-
-  if(oldVideo) oldVideo.remove();
+  ////remove the old video, this is for the camera flip
+  //let oldVideo = document.querySelector("#video1");
+  //if(oldVideo) oldVideo.remove();
 
   // Ask for webcam permissions, then run main application.
   var loading = document.getElementById("loading");
@@ -190,7 +191,7 @@ function webcamInference() {
         canvas.height = height;
 
         document.getElementById("video_canvas").style.display = "block";
-        loading.style.display = "none"; //clear the loading graphic
+        // loading.style.display = "none"; //clear the loading graphic
       };
 
       ctx.scale(1, 1);
