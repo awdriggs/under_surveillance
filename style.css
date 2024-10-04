@@ -108,4 +108,10 @@ h1, h2, h3 {
   #sketch {
     marign: 0;
   }
+
+
+  /* styles for specific pages */
+  #species-wrapper a {
+    text-decoration: none;
+  }
 }
