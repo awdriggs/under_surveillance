@@ -50,6 +50,7 @@ var ctx = canvas.getContext("2d");
 
 var model = null;
 
+//this draws the bounding boxes on a canvas
 function detectFrame() {
   // On first run, initialize a canvas
   // On all runs, run inference using a video frame
@@ -248,5 +249,9 @@ function displayBanner(predictions){
 // }
 
 // document.getElementById("confidence").addEventListener("input", changeConfidence);
-
+//starts the web cam
 webcamInference();
+
+//save location...
+//use airtable
+ 
