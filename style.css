@@ -89,7 +89,7 @@ h1, h2, h3 {
       background-color: var(--black);
       position: relative;
       top: -50px;
-      border: 1px solid black;
+      /* border: 1px solid black; */
       border-radius: 100%;
     }
 
@@ -103,7 +103,12 @@ h1, h2, h3 {
       width: 70px;
       height: 70px;
     }
+    .inactive {
+      background-color: var(--grey);
+    }
   }
+
+
 
   #sketch {
     marign: 0;
