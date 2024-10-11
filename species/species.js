@@ -9,11 +9,13 @@ base('species').select({
   view: "Grid view"
 }).eachPage(function page(records, fetchNextPage) {
   // This function (`page`) will get called for each page of records.
+  
   let container = document.querySelector("#species-wrapper");
 
   records.forEach(function(record) {
     // console.log('Retrieved', record.get('slug'));
     // debugger;
+    // console.log(record.fields.slug, record.id);
     let anchor = document.createElement("a");
     let baseUrl = window.location.origin;
     let param = record.id;

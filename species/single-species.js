@@ -39,6 +39,37 @@ base('species').find(id, function(err, record) {
   img.src = record.fields.canonical_img[0].url;
   container.append(img);
 
+  let subtitle = document.createElement("h2");
+  subtitle.innerHTML = "Info";
+  container.append(subtitle);
+
+  let info = document.createElement("section");
+  info.classList.add("info");
+
+
+  let type = document.createElement("p");
+  type.innerHTML = "<b>Type:</b> " + record.fields.type;
+  info.append(type);
+
+
+  let maker = document.createElement("p");
+  maker.innerHTML = "<b>Manufacturers:</b> " + record.fields.manufacturers;
+  info.append(maker);
+
+  let adapt = document.createElement("p");
+  adapt.innerHTML = "<b>Adaptations:</b> " + record.fields.adaptations;
+  info.append(adapt);
+
+  let relate = document.createElement("p");
+  relate.innerHTML = "<b>Relationships:</b> " + record.fields.relationships;
+  info.append(relate);
+
+  container.append(info);
+
+  let descriptionTitle = document.createElement("h2");
+  descriptionTitle.innerHTML = "Description";
+  container.append(descriptionTitle);
+
   let desc = document.createElement("p");
   desc.innerHTML = record.fields.description;
   container.append(desc);
