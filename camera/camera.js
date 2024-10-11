@@ -9,7 +9,7 @@
 //globals
 let fm = 'environment';
 //this isn't working and freezing the app on the phone
- 
+
 // let flip = document.querySelector('#flip');
 
 // flip.addEventListener("click", () => {
@@ -23,7 +23,15 @@ let fm = 'environment';
 // });
 
 //insert the colors you want, key pairs
-var bounding_box_colors = {};
+var box_data = {
+  "box": ["rec8UZJfhC8yCdPbB", "#ff7f11"],
+  "bullet":["recxCtRV7ljIxXQ8n", "#ff3f00"],
+  "dome": ["reczcJy0asZKXfCJB", "#7DDF64"],
+  "doorbell": ["recEuO93A47OVxl46", "#2660A4"],
+  "nest": ["recIXNdUhIjiSTLXS", "#0CA4A5"],
+  "ptz": ["recLM2NLdaxYnyrB1", "#03CEA4"],
+  "turret":["recNESaA2fKPfVrmy", "#FDE74C"],
+};
 
 //bump this up to make it  more exact
 var user_confidence = 0.6;
@@ -107,9 +115,9 @@ function drawBoundingBoxes(predictions, ctx) {
     if (confidence < user_confidence) {
       continue
     }
-
-    if (predictions[i].class in bounding_box_colors) {
-      ctx.strokeStyle = bounding_box_colors[predictions[i].class];
+    debugger;
+    if (predictions[i].class in box_data) {
+      ctx.strokeStyle = box_data[predictions[i].class][1];
     } else {
       var color =
         color_choices[Math.floor(Math.random() * color_choices.length)];
@@ -147,7 +155,7 @@ function webcamInference() {
   // Ask for webcam permissions, then run main application.
   var loading = document.getElementById("loading");
   loading.style.display = "block";
- 
+
 
   navigator.mediaDevices
     .getUserMedia({ video: { facingMode: fm } })
@@ -226,8 +234,8 @@ function displayBanner(predictions){
   let banner = document.querySelector(".banner");
 
   if(predictions.length > 0 && predictions[0].confidence > user_confidence){
-    let param = predictions[0].class;
-
+    // let param = predictions[0].class;
+    let param = box_data[predictions[0].class][0];
     banner.style.visibility = "visible";
     // document.getElementById("abc").href="xyz.php";
     let baseUrl = window.location.origin;
@@ -238,6 +246,9 @@ function displayBanner(predictions){
     console.log(targetUrl);
     // Construct the URL with query parameters
     anchor.href = targetUrl;
+
+    //link to provocation
+
 
   } else {
     banner.style.visibility = "hidden";
@@ -254,4 +265,4 @@ webcamInference();
 
 //save location...
 //use airtable
- 
+
