@@ -1,3 +1,7 @@
+//event listeners
+let captureBtn = document.querySelector("#identify");
+captureBtn.addEventListener("click", capture);
+
 // To display predictions, this app has:
 // 1. A video that shows a feed from the user's webcam
 // 2. A canvas that appears over the video and shows predictions
@@ -55,6 +59,7 @@ var color_choices = [
 var canvas_painted = false;
 var canvas = document.getElementById("video_canvas");
 var ctx = canvas.getContext("2d");
+let captureCoords = {}; //global updated with the capture coordinates
 
 var model = null;
 
@@ -105,17 +110,25 @@ function drawBoundingBoxes(predictions, ctx) {
   // For example, you could display them on the web page, check off items on a list,
   // or store predictions somewhere.
 
-  displayBanner(predictions);
+  displayBanner(predictions); //TODO could be refactored in a moved into the conditional below
+
+  //to capture or not to capture?
+  if(predictions.length > 0 && predictions[0].confidence > user_confidence){
+    captureBtn.disabled = false;
+  } else {
+    captureBtn.disabled = true;
+  }
+
 
   for (var i = 0; i < predictions.length; i++) {
     var confidence = predictions[i].confidence;
 
-    console.log(user_confidence)
+    // console.log(user_confidence)
 
     if (confidence < user_confidence) {
       continue
     }
-    debugger;
+
     if (predictions[i].class in box_data) {
       ctx.strokeStyle = box_data[predictions[i].class][1];
     } else {
@@ -134,7 +147,19 @@ function drawBoundingBoxes(predictions, ctx) {
     var width = prediction.bbox.width;
     var height = prediction.bbox.height;
 
+    //update the capture coordinates
+    //only save the first one
+    if(i == 0){
+      captureCoords.x = x;
+      captureCoords.y = y;
+      captureCoords.width = width;
+      captureCoords.height = height;
+      captureCoords.name = prediction.class;
+      // console.log(captureCoords);
+    }
+
     ctx.rect(x, y, width, height);
+
 
     ctx.fillStyle = "rgba(0, 0, 0, 0)";
     ctx.fill();
@@ -144,6 +169,7 @@ function drawBoundingBoxes(predictions, ctx) {
     ctx.strokeRect(x, y, width, height);
     ctx.font = "25px Arial";
     ctx.fillText(prediction.class + " " + Math.round(confidence * 100) + "%", x, y - 10);
+
   }
 }
 
@@ -243,7 +269,7 @@ function displayBanner(predictions){
     // anchor.href = baseUrl + `/species/${predictions[0].class}.html`;
 
     let targetUrl =`${baseUrl}/species/single.html?id=${encodeURIComponent(param)}`;
-    console.log(targetUrl);
+    // console.log(targetUrl);
     // Construct the URL with query parameters
     anchor.href = targetUrl;
 
@@ -265,4 +291,75 @@ webcamInference();
 
 //save location...
 //use airtable
+function capture(){
+  console.log("capture bro");
+
+  // Create an image url
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  //help of chatgpt here
+
+  const imageData = ctx.getImageData(captureCoords.x, captureCoords.y, captureCoords.width, captureCoords.height)
+  // Create a new canvas element to hold the cropped portion
+  const croppedCanvas = document.createElement('canvas');
+  croppedCanvas.width = captureCoords.width;
+  croppedCanvas.height = captureCoords.height;
+  const croppedCtx = croppedCanvas.getContext('2d');
+
+  // Put the extracted image data onto the new canvas
+  croppedCtx.putImageData(imageData, 0, 0);
+
+  // Step 3: Convert the cropped canvas to an image (base64)
+  const croppedImageURL = croppedCanvas.toDataURL(); // Base64 string
+
+  //
+  let data = [];
+  data.push({"fields": {}});
+  
+  // data[0].fields.img = [];
+  // data[0].fields.img.push({url: croppedImageURL});
+  // let timestamp = Date.now();
+  data[0].fields.species = captureCoords.name;
+  data[0].fields.base64 = croppedImageURL;
+
+  //get location
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      data[0].fields.timestamp = String(position.timestamp);
+      data[0].fields.longitude = String(position.coords.longitude);
+      data[0].fields.latitude = String(position.coords.latitude);
+
+      pushToAirtable(data); //has to be here because you are waiting for the data to get generated
+    })
+  } else {
+    //no geolocation? magical kingdom then
+    data[0].fields.timestamp = String(Date.now());
+    data[0].fields.latitude = "28.385233";
+    data[0].fields.longitude =  "-81.563873";
+
+    pushToAirtable(data);
+  }
+
+
+  // debugger;
+  // console.log(data);
+
+    // debugger;
+}
+
+function pushToAirtable(data){
+//upload to airtable
+  var Airtable = require('airtable');
+  var base = new Airtable({ apiKey: 'patxeF8i4nhZP07q7.c5859ae986f18ab5b26786adee657598d3110ae493d921a44062fcc628e873c7' }).base('appkKVYgOCUz8gC1H');
+
+  base('sightings').create(data, function(err, records) {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    records.forEach(function (record) {
+      console.log(record.getId());
+    });
+  });
+
+}
 

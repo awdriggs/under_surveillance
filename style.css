@@ -94,6 +94,7 @@ h1, h2, h3 {
       position: relative;
       top: -50px;
       /* border: 1px solid black; */
+      border: none;
       border-radius: 100%;
     }
 
@@ -107,9 +108,16 @@ h1, h2, h3 {
       width: 70px;
       height: 70px;
     }
-    .inactive {
+
+
+    #identify {
+      background-color: var(--red);
+
+    }
+    #identify:disabled {
       background-color: var(--grey);
     }
+
   }
 
 

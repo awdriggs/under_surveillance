@@ -14,6 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../variables.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="./camera.css">
+
+  <script src="../airtable.browser.js"></script><!-- needed for upload -->
 </head>
 <body>
   <div id="page-container">
@@ -46,7 +48,7 @@
 
     <footer>
       <a id="home" class="button btn-sm" href="../"><img src="../assets/home.svg" width="50px" alt="map icon"></a>
-      <a id="identify" class="button" href="#"><img src="../assets/capture.svg" width="80px" alt="camera icon"></a>
+      <button id="identify" disabled class="button" ><img src="../assets/capture.svg" width="80px" alt="camera icon"></button>
       <a id="flip" class="button btn-sm" href="../provoke/provoke.html">
          <img src="../assets/provoke.svg" width="50px" alt="warning icon">
        </a>
