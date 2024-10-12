@@ -9,35 +9,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&amp;family=Roboto&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../variables.css">
   <link rel="stylesheet" type="text/css" href="../style.css">
-  <title>Surveillance MacroScope</title>
+  <title>Surveillance MacroScope</title><!-- map stuff -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="TileLayer.Grayscale.js"></script>
+  <script src="../airtable.browser.js"></script>
 </head>
 <body>
-  <div id="page-container">
-   
-    <section id="map" style="overflow: scroll;width: 100%;">
-    <img id="map-placeholder" src="../assets/fake_map.png" style="max-width: 1200px;">
-    </section>
+  <div id="page-container" style="padding: 0;">
+    <!-- <section id="map" style="overflow: scroll;width: 100%;"> -->
+    <!-- <img id="map-placeholder" src="../assets/fake_map.png" style="max-width: 1200px;"> -->
+    <!-- </section> -->
     <!-- <h1><a href="../">Under _ Surveillance</a></h1> -->
 
-    <!-- <main> -->
+    <main id="map-wrapper">
       <!-- <h2 class="callout">Map</h2> -->
       <!-- <1!-- <img src="./assets/hero_image.png"> --1> -->
-    <!-- </main> -->
+      <div id="map">
+      </div>
+       
+    </main>
 
     <footer>
-
-      <a id="map" class="button btn-sm" href="../">
-        <img src="../assets/home.svg" width="50px" alt="home icon">
-      </a>
-
-      <a id="identify" class="button" href="../camera/camera.html">
-        <img src="../assets/camera.svg" width="80px" alt="camera icon">
-      </a> 
-
-      <a id="species" class="button btn-sm" href="../species/species.html">
-        <img src="../assets/subject.svg" width="50px" alt="list icon">
-      </a>
+      <a id="map" class="button btn-sm" href="../"><img src="../assets/home.svg" width="50px" alt="home icon"></a> <a id="camera" class="button" href="../camera/camera.html"><img src="../assets/camera.svg" width="80px" alt="camera icon"></a> <a id="species" class="button btn-sm" href="../species/species.html"><img src="../assets/subject.svg" width="50px" alt="list icon"></a>
     </footer>
+
+    <script src="map.js"></script>
   </div>
 </body>
 </html>

@@ -177,4 +177,11 @@ h1, h2, h3 {
 
     }
   }
+
+  #map-wrapper {
+    #map { 
+      height: 100vh;
+      z-index: 0;
+    }
+  }
 }
