@@ -60,6 +60,7 @@ var canvas_painted = false;
 var canvas = document.getElementById("video_canvas");
 var ctx = canvas.getContext("2d");
 let captureCoords = {}; //global updated with the capture coordinates
+let uploadPause = false;
 
 var model = null;
 
@@ -113,7 +114,7 @@ function drawBoundingBoxes(predictions, ctx) {
   displayBanner(predictions); //TODO could be refactored in a moved into the conditional below
 
   //to capture or not to capture?
-  if(predictions.length > 0 && predictions[0].confidence > user_confidence){
+  if(predictions.length > 0 && predictions[0].confidence > user_confidence && uploadPause != true){
     captureBtn.disabled = false;
   } else {
     captureBtn.disabled = true;
@@ -314,7 +315,7 @@ function capture(){
   //
   let data = [];
   data.push({"fields": {}});
-  
+
   // data[0].fields.img = [];
   // data[0].fields.img.push({url: croppedImageURL});
   // let timestamp = Date.now();
@@ -343,22 +344,33 @@ function capture(){
   // debugger;
   // console.log(data);
 
-    // debugger;
+  // debugger;
 }
 
 function pushToAirtable(data){
-//upload to airtable
+  //upload to airtable
   var Airtable = require('airtable');
   var base = new Airtable({ apiKey: 'patxeF8i4nhZP07q7.c5859ae986f18ab5b26786adee657598d3110ae493d921a44062fcc628e873c7' }).base('appkKVYgOCUz8gC1H');
 
+  uploadPause = true;
+
   base('sightings').create(data, function(err, records) {
+    uploadPause = false; //allow for more photos
+
     if (err) {
       console.error(err);
       return;
     }
+
     records.forEach(function (record) {
       console.log(record.getId());
     });
+
+    document.querySelector("#confirm").classList.remove("hide");
+
+    setTimeout(()=> {
+      document.querySelector("#confirm").classList.add("hide");
+    }, 3000);
   });
 
 }

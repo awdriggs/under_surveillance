@@ -120,6 +120,16 @@ h1, h2, h3 {
 
   }
 
+  #confirm {
+    position: fixed;
+    top: 10px;
+    text-align: center;
+    width: 100%;
+  }
+  .hide {
+    display: none;
+  }
+
 
 
   #sketch {

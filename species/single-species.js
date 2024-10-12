@@ -25,8 +25,6 @@ base('species').find(id, function(err, record) {
 
   let container = document.querySelector("#species-wrapper");
 
-
-
   let title = document.createElement("h2");
   title.classList.add("callout");
   title.innerHTML = record.fields.name;
