@@ -156,7 +156,7 @@ h1, h2, h3 {
 
     h1 {
       color: var(--red);
-      font-size: 4rem;
+      font-size: 3rem;
       text-align: center;
       /* margin-top: 50% - ; */
       transform: translateY(25%);
