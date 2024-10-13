@@ -194,4 +194,29 @@ h1, h2, h3 {
       z-index: 0;
     }
   }
+
+  #recent-sightings {
+    .card {
+      margin-top: 10px;
+
+      img {
+        width: 100px;
+        display: inline-block;
+      }
+
+      .sighting-info {
+        padding-left: 10px;
+        display: inline-block;
+        vertical-align: top;
+
+        p {
+          margin: 0;
+        }
+
+        .location {
+          font-size: 1.5rem;
+        }
+      }
+
+    }
 }
